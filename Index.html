@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎰 SlotSpot Pro</title>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffcc00">
+
+  <style>
+    body{
+      font-family:Arial,sans-serif;
+      background:#111;
+      color:#fff;
+      text-align:center;
+      padding:30px;
+    }
+    button{
+      padding:15px 25px;
+      font-size:18px;
+      border:none;
+      border-radius:10px;
+      background:#ffcc00;
+      cursor:pointer;
+    }
+    #reels{
+      font-size:60px;
+      margin:25px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎰 SlotSpot Pro</h1>
+<p>Find • Play • Earn</p>
+
+<div id="reels">❔ | ❔ | ❔</div>
+
+<h2 id="coins">💰 Coins: 100</h2>
+
+<button onclick="spin()">SPIN</button>
+
+<p id="result"></p>
+
+<script>
+const symbols=["🍒","🔔","⭐","💎","7️⃣"];
+let coins=100;
+
+function spin(){
+  if(coins<5){
+    document.getElementById("result").innerText="Not enough coins!";
+    return;
+  }
+
+  coins-=5;
+
+  const reels=[
+    symbols[Math.floor(Math.random()*symbols.length)],
+    symbols[Math.floor(Math.random()*symbols.length)],
+    symbols[Math.floor(Math.random()*symbols.length)]
+  ];
+
+  document.getElementById("reels").innerText=reels.join(" | ");
+
+  if(reels[0]===reels[1] && reels[1]===reels[2]){
+    coins+=50;
+    document.getElementById("result").innerText="🎉 JACKPOT!";
+  }else{
+    document.getElementById("result").innerText="Try Again!";
+  }
+
+  document.getElementById("coins").innerText="💰 Coins: "+coins;
+}
+</script>
+
+</body>
+</html>
